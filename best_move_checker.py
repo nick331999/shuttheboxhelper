@@ -1,6 +1,7 @@
 
 """Checks the best move for a game of shut the box
 """
+from typing import Dict
 
 BOX_NUMS = 9
 
@@ -55,14 +56,13 @@ def get_diff(arr1: [int], arr2: [int]) -> [int]:
     [4,5]
 
     """
-	difference_array = []
-	for num in arr1:
-		if num not in arr2:
-			difference_array.append(num)
-	for num in arr2:
-		if num not in arr1:
-			difference_array.append(num)
-
+    difference_array = []
+    for num in arr1:
+        if num not in arr2:
+            difference_array.append(num)
+    for num in arr2:
+        if num not in arr1:
+            difference_array.append(num)
     return difference_array
 
 
@@ -84,8 +84,43 @@ def nums_that_sum_to(target: int) -> [[int]]:
     >>> nums_that_sum_to(7)
     [[1,2,4], [3,4], [2,5], [7]]
     >>> nums_that_sum_to(3)
-    [[1,2], [3]]
+    [[3], [1, 2]]
 
     """
-
-    return None
+    nums_that_sum = []
+    pool = list(range(BOX_NUMS + 1))[1:]
+    nums_that_sum.append([target])
+    if target >= 2:
+        for num1 in pool:
+            for num2 in pool:
+                if num1 + num2 == target and num1 != num2:
+                    appender = [num1, num2]
+                    appender.sort()
+                    nums_that_sum.append(appender)
+    if target >= 6:
+        for num1 in pool:
+            for num2 in pool:
+                for num3 in pool:
+                    if (num1 + num2 + num3 == target and 
+                        not (num1 == num2 or num2 == num3 
+                        or num3 == num1)):
+                        appender = [num1, num2, num3]
+                        appender.sort()
+                        nums_that_sum.append(appender)
+    if target >= 10:
+        for num1 in pool:
+            for num2 in pool:
+                for num3 in pool:
+                    for num4 in pool:
+                        if (num1 + num2 + num3 + num4 == target and 
+                            not (num1 == num2 or num2 == num3 or
+                            num3 == num1 or num1 == num4 or 
+                            num2 == num4 or num3 == num4)):
+                            appender = [num1, num2, num3, num4]
+                            appender.sort()
+                            nums_that_sum.append(appender)
+    final_list = []
+    for element in nums_that_sum:
+        if element not in final_list:
+            final_list.append(element)
+    return final_list
