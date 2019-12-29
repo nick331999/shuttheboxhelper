@@ -124,3 +124,18 @@ def nums_that_sum_to(target: int) -> [[int]]:
         if element not in final_list:
             final_list.append(element)
     return final_list
+
+def box_after_move(available_nums: [int], move: [int]) -> [int]:
+    """Removes all numbers from the array move. Then returns
+    the box after these numbers have been removed
+    >>> box_after_move([1,2,3,4,5,6], [2,6])
+    [1,3,4,5]
+    >>> box_after_move([2,5,6,8], [2,8])
+    [5,6]
+
+    """
+    final_list = []
+    for num in available_nums:
+        if num not in move:
+            final_list.append(num)      
+    return final_list
