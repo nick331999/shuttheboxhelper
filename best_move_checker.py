@@ -6,7 +6,7 @@ BOX_NUMS = 9
 
 
 def best_move(available_nums: [int], roll: int) -> [int]:
-    """Calculates the best move to garuntee the highest chance of
+    """Calculates the best move to guarantee the highest chance of
     survival on a 2 dice roll next turn.
 
     >>> best_move([1,2,3,4,5,6,7,8,9], 9)
@@ -55,8 +55,15 @@ def get_diff(arr1: [int], arr2: [int]) -> [int]:
     [4,5]
 
     """
+	difference_array = []
+	for num in arr1:
+		if num not in arr2:
+			difference_array.append(num)
+	for num in arr2:
+		if num not in arr1:
+			difference_array.append(num)
 
-    return None
+    return difference_array
 
 
 def effective_array(available_nums) -> [int]:
@@ -70,4 +77,3 @@ def effective_array(available_nums) -> [int]:
     """
 
     return None
-    
