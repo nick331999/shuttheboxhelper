@@ -57,6 +57,7 @@ def combinations_for_result(roll: int) -> int:
         num_combos = 2
     elif dist_from_7 is 5:
         num_combos = 1
+	return num_combos
 
 def get_diff(arr1: [int], arr2: [int]) -> [int]:
     """Returns the elements which are not in common between
