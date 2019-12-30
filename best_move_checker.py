@@ -55,8 +55,12 @@ def combinations_for_result(roll: int) -> int:
     6
 
     """
+<<<<<<< HEAD
     return -(abs(7 - roll)) + 6
 
+=======
+	return (-(abs(roll - 7)) + 6)
+>>>>>>> 42ae584af45656e4aa8f91a3e13e6722e94a9add
 
 def get_diff(arr1: [int], arr2: [int]) -> [int]:
     """Returns the elements which are not in common between
@@ -86,6 +90,7 @@ def effective_array(available_nums: int, cap: int) -> [int]:
     [2,5,6,7,8,9]
 
     """
+<<<<<<< HEAD
     starting_list = []
     for num1 in available_nums:
         for num2 in available_nums:
@@ -101,6 +106,10 @@ def effective_array(available_nums: int, cap: int) -> [int]:
         if num not in final_list and num <= cap:
             final_list.append(num)      
     return final_list
+=======
+	
+	return None
+>>>>>>> 42ae584af45656e4aa8f91a3e13e6722e94a9add
 
 def nums_that_sum_to(target: int) -> [[int]]:
     """Returns all the combinations of numbers less than BOX_NUMS
