@@ -43,21 +43,7 @@ def combinations_for_result(roll: int) -> int:
     6
 
     """
-    dist_from_7 = abs(roll - 7)
-    num_combos = ()
-    if dist_from_7 is 0:
-        num_combos = 6
-    elif dist_from_7 is 1:
-        num_combos = 5
-    elif dist_from_7 is 2:
-        num_combos = 4
-    elif dist_from_7 is 3:
-        num_combos = 3
-    elif dist_from_7 is 4:
-        num_combos = 2
-    elif dist_from_7 is 5:
-        num_combos = 1
-	return num_combos
+	return (-(abs(roll - 7)) + 6)
 
 def get_diff(arr1: [int], arr2: [int]) -> [int]:
     """Returns the elements which are not in common between
