@@ -75,8 +75,8 @@ def effective_array(available_nums) -> [int]:
     [2,5,6,7,8,9]
 
     """
-
-    return None
+	
+	return None
 
 def nums_that_sum_to(target: int) -> [[int]]:
     """Returns all the combinations of numbers less than BOX_NUMS
