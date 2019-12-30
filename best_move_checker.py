@@ -6,8 +6,8 @@ from typing import Dict
 BOX_NUMS = 9
 
 
-def best_move(available_nums: [int], roll: int) -> str:
-    """Calculates the best move to guarantee the highest chance of
+def best_moves(available_nums: [int], roll: int) -> [int]:
+    """Calculates the best moves to guarantee the highest chance of
     survival on a 2 dice roll next turn.
 
     >>> best_move([1,2,3,4,5,6,7,8,9], 9)
@@ -23,11 +23,11 @@ def best_move(available_nums: [int], roll: int) -> str:
             move_dict[(next_move_survival_probability(box_after_move(available_nums, my_possible_moves[i])))].append(my_possible_moves[i])
         else:
             move_dict[(next_move_survival_probability(box_after_move(available_nums, my_possible_moves[i])))] = [(my_possible_moves[i])]
-    max_key = max(move_dict.keys())
-    best_sums = [move_dict[max_key]]
-    print(move_dict)
-    return best_sums[0]
-
+    if move_dict:
+        max_key = max(move_dict.keys())
+        best_sums = [move_dict[max_key]]
+        return best_sums[0]
+    return []
 
 def next_move_survival_probability(available_nums: [int]) -> int:
     """returns the probability of being able to stay in the game
@@ -55,12 +55,7 @@ def combinations_for_result(roll: int) -> int:
     6
 
     """
-<<<<<<< HEAD
-    return -(abs(7 - roll)) + 6
-
-=======
-	return (-(abs(roll - 7)) + 6)
->>>>>>> 42ae584af45656e4aa8f91a3e13e6722e94a9add
+    return (-(abs(roll - 7)) + 6)
 
 def get_diff(arr1: [int], arr2: [int]) -> [int]:
     """Returns the elements which are not in common between
@@ -90,7 +85,6 @@ def effective_array(available_nums: int, cap: int) -> [int]:
     [2,5,6,7,8,9]
 
     """
-<<<<<<< HEAD
     starting_list = []
     for num1 in available_nums:
         for num2 in available_nums:
@@ -106,10 +100,6 @@ def effective_array(available_nums: int, cap: int) -> [int]:
         if num not in final_list and num <= cap:
             final_list.append(num)      
     return final_list
-=======
-	
-	return None
->>>>>>> 42ae584af45656e4aa8f91a3e13e6722e94a9add
 
 def nums_that_sum_to(target: int) -> [[int]]:
     """Returns all the combinations of numbers less than BOX_NUMS
@@ -169,16 +159,10 @@ def box_after_move(available_nums: [int], move: [int]) -> [int]:
 
     """
     final_list = []
-    move_tester = move
-    for i in move_tester:
-        if i in available_nums:
-            move_tester.remove(i)
-    if len(move_tester) == 0:
-        for num in available_nums:
-            if num not in move:
-                final_list.append(num)
-        return final_list
-    return []
+    for num in available_nums:
+        if num not in move:
+            final_list.append(num)
+    return final_list
 
 def possible_moves(available_nums: [int], roll: int) -> [[int]]:
     """Returns all possible moves that can be made with
@@ -191,40 +175,10 @@ def possible_moves(available_nums: [int], roll: int) -> [[int]]:
 
     """
     final_moves = nums_that_sum_to(roll)
+    impossible_moves = []
     for each_sum in final_moves:
         for num in each_sum:
-            if num not in available_nums and each_sum in final_moves:
-                final_moves.remove(each_sum)      
-    return final_moves
-
-def average_survival(available_nums: [int]) -> float:
-    """Returns the average probability of survival given
-    over all rolls for available nums.
-
-    """
-    total_prob = 0.0
-    for i in range(11):
-        total_prob += next_move_survival_probability(box_after_move(available_nums, (best_move(available_nums, i+2)[0])))
-    my_prob = total_prob / 11
-    return my_prob
-
-def best_move_overall(available_nums: [int], moves: [[int]]) -> [int]:
-    """Returns the best move while taking into account
-    the next move.
-
-    """
-    print(moves)
-    for move in moves:
-        print(box_after_move(available_nums, move))
-        print(average_survival(box_after_move(available_nums, move)))
-    return None
-
-#print(best_move([1,2,3,4,5,6,7,8], 9))
-##print(effective_array([1,2,3,4,5,6]), BOX_NUMS)
-#print(combinations_for_result(6))
-#print(possible_moves([1,2,3,4,6], 6))
-#print(next_move_survival_probability([]))
-#print(average_survival([1,2,3,6,7,8]), "BREAK", average_survival([1,3,4,5,6,7]))
-print(average_survival([2]))
-#print(best_move([1,2,3,4,5], 5))
-#print(best_move_overall([1,2,3,4,5],best_move([1,2,3,4,5], 5)))
+            if (num not in available_nums) and (each_sum in final_moves):
+                impossible_moves.append(each_sum)
+                break
+    return get_diff(final_moves, impossible_moves)
