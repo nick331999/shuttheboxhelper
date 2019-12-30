@@ -43,9 +43,7 @@ def combinations_for_result(roll: int) -> int:
     6
 
     """
-
-    return None
-
+	return (-(abs(roll - 7)) + 6)
 
 def get_diff(arr1: [int], arr2: [int]) -> [int]:
     """Returns the elements which are not in common between
@@ -75,8 +73,8 @@ def effective_array(available_nums) -> [int]:
     [2,5,6,7,8,9]
 
     """
-
-    return None
+	
+	return None
 
 def nums_that_sum_to(target: int) -> [[int]]:
     """Returns all the combinations of numbers less than BOX_NUMS
