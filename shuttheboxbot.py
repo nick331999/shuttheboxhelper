@@ -68,3 +68,12 @@ def choose_move(box: [int], my_type: str, roll: int) -> [int]:
             return dumb_moves[random.randint(0, len(dumb_moves) - 1)]
         else:
             return possible_moves[random.randint(0, len(possible_moves) - 1)]
+
+def compare_best_moves(available_nums: [int], roll: int, bot_type: str, num_sims: int) -> None:
+    print("-=-=-=-=-=BEST MOVES=-=-=-=-=-")
+    for move in bmc.best_moves(available_nums, roll):
+        print("After ", move, " move ", game_simulator(bmc.box_after_move(available_nums, move), bot_type, num_sims))
+    print("-=-=-=-=-=SUB-OPTIMAL MOVES=-=-=-=-=-")
+    for move in bmc.get_diff(bmc.best_moves(available_nums, roll), bmc.possible_moves(available_nums, roll)):
+        print("After ", move, " move ", game_simulator(bmc.box_after_move(available_nums, move), bot_type, num_sims))
+    return None
