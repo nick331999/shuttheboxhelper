@@ -34,7 +34,6 @@ def play_game(starting_box: [int], bot_type: str) -> int:
     while len(my_box) > 0:
         roll = make_roll()
         my_move = choose_move(my_box, bot_type, roll)
-        print(my_box, 'ROLL: ',roll,'    MOVE: ', my_move)
         if not my_move:
             return 0
         else:
@@ -72,7 +71,6 @@ def choose_move(box: [int], my_type: str, roll: int) -> [int]:
         else:
             return possible_moves[random.randint(0, len(possible_moves) - 1)]
     if my_type == OPTIMAL:
-       # print('OPTIMAL:', box, "=======", roll)
         return om.get_optimal_move(box, roll, my_dict)
 
 def compare_best_moves(available_nums: [int], roll: int, bot_type: str, num_sims: int) -> None:
@@ -87,8 +85,8 @@ def compare_best_moves(available_nums: [int], roll: int, bot_type: str, num_sims
 #print(THE_BOX)
 #print(game_simulator([1,2,3,4,5,6,7,8,9], SMART, 1000))
 my_dict = om.generate_optimal_move_dict("optimal_move_table.txt")
-print(game_simulator([1,2,3,4,5,6,7,8,9], OPTIMAL, 1))
-#print(game_simulator([1,2,3,4,5,6,7,8,9], OPTIMAL, 100))
+print(game_simulator([1,2,3,4,5,6,7,8,9], SMART, 19999))
+print(game_simulator([1,2,3,4,5,6,7,8,9], OPTIMAL, 19999))
 #print("after [3,9] move " ,game_simulator([1,2,3,4,5,6,7,8,9], RANDOM, 1000))
 #print("after [4,8] move " ,game_simulator([1,2,3,5,6,7,9], SMART, 1000))
 #print("after [5,7] move " ,game_simulator([1,2,3,4,6,8,9], SMART, 1000))

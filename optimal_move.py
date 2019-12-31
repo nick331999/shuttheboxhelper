@@ -25,9 +25,8 @@ def get_optimal_move(available_nums: [int], roll: int, my_dict: dict) -> [int]:
     Based on the optimal move table.
 
     """
-    flipped = get_flipped(available_nums)
-    print("flipped: ", flipped)
-    optimal_move = my_dict[flipped][roll]
+    flipped_str = get_flipped(available_nums)
+    optimal_move = my_dict[flipped_str][roll]
     return str_to_list(optimal_move)
 
 def str_to_list(my_str: str) -> [int]:
@@ -45,7 +44,7 @@ def get_flipped(available_nums: [int]) -> str:
     Then sorts the nums and puts them into one string
 
     """
-    flipped_nums = THE_BOX
+    flipped_nums = [1,2,3,4,5,6,7,8,9]
     flipped_str = ''
     for num in available_nums:
         if num in flipped_nums:
@@ -56,8 +55,8 @@ def get_flipped(available_nums: [int]) -> str:
         return '0'
     return flipped_str
 
-print(get_flipped( [2, 3, 4] ))
-print(get_flipped( [2, 3, 4,5] ))
+#print(get_flipped( [2, 3, 4] ))
+#print(get_flipped( [2, 3, 4,5] ))
 #my_dict = generate_optimal_move_dict("optimal_move_table.txt")
 #test_box = [1,2,3,4,5,6,7,8,9]
 #print(get_optimal_move(test_box , 7, my_dict))
