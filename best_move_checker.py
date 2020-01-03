@@ -182,5 +182,3 @@ def possible_moves(available_nums: [int], roll: int) -> [[int]]:
                 impossible_moves.append(each_sum)
                 break
     return get_diff(final_moves, impossible_moves)
-
-print(possible_moves([7,8],9))
