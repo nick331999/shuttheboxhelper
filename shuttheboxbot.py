@@ -85,3 +85,5 @@ def compare_best_moves(available_nums: [int], roll: int, bot_type: str, num_sims
     for move in bmc.get_diff(bmc.best_moves(available_nums, roll), bmc.possible_moves(available_nums, roll)):
         print("After ", move, " move ", game_simulator(bmc.box_after_move(available_nums, move), bot_type, num_sims))
     return None
+
+my_dict = om.generate_optimal_move_dict("optimal_move_table.txt")
